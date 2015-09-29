@@ -1,0 +1,153 @@
+<resources>
+    <string name="app_name">QueueDodger</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_dodge_info">dodgeInfo</string>
+
+    <string-array name="positions">
+        <item>Mid</item>
+        <item>Top</item>
+        <item>Adc</item>
+        <item>Jungle</item>
+        <item>Support</item>
+    </string-array>
+
+    <string-array name="champions">
+        <item>Aatrox</item>
+        <item>Ahri</item>
+        <item>Akali</item>
+        <item>Alistar</item>
+        <item>Amumu</item>
+        <item>Anivia</item>
+        <item>Annie</item>
+        <item>Ashe</item>
+        <item>Azir</item>
+        <item>Bard</item>
+        <item>Blitzcrank</item>
+        <item>Brand</item>
+        <item>Braum</item>
+        <item>Caitlyn</item>
+        <item>Cassiopea</item>
+        <item>Cho\'Gath</item>
+        <item>Corki</item>
+        <item>Darius</item>
+        <item>Diana</item>
+        <item>Dr. Mundo</item>
+        <item>Draven</item>
+        <item>Ekko</item>
+        <item>Elise</item>
+        <item>Evelynn</item>
+        <item>Ezreal</item>
+        <item>Fiddlesticks</item>
+        <item>Fiora</item>
+        <item>Fizz</item>
+        <item>Galio</item>
+        <item>Gangplank</item>
+        <item>Garen</item>
+        <item>Gnar</item>
+        <item>Gragas</item>
+        <item>Graves</item>
+        <item>Hecarim</item>
+        <item>Heimerdinger</item>
+        <item>Irelia</item>
+        <item>Janna</item>
+        <item>Jarvan IV</item>
+        <item>Jax</item>
+        <item>Jayce</item>
+        <item>Jinx</item>
+        <item>Kalista</item>
+        <item>Karma</item>
+        <item>Karthua</item>
+        <item>Kassadin</item>
+        <item>Katarina</item>
+        <item>Kayle</item>
+        <item>Kennen</item>
+        <item>Kha\'Zix</item>
+        <item>Kog\'Maw</item>
+        <item>LeBlanc</item>
+        <item>Lee Sin</item>
+        <item>Leona</item>
+        <item>Lissandra</item>
+        <item>Lucian</item>
+        <item>Lulu</item>
+        <item>Lux</item>
+        <item>Malphite</item>
+        <item>Malzahar</item>
+        <item>Maokai</item>
+        <item>Master Yi</item>
+        <item>Miss Fortune</item>
+        <item>Mordekaiser</item>
+        <item>Morgana</item>
+        <item>Nami</item>
+        <item>Nasus</item>
+        <item>Nautilus</item>
+        <item>Nidalee</item>
+        <item>Nocturne</item>
+        <item>Nunu</item>
+        <item>Olaf</item>
+        <item>Orianna</item>
+        <item>Pantheon</item>
+        <item>Poppy</item>
+        <item>Quinn</item>
+        <item>Rammus</item>
+        <item>Rek\'Sai</item>
+        <item>Renekton</item>
+        <item>Rengar</item>
+        <item>Riven</item>
+        <item>Rumble</item>
+        <item>Ryze</item>
+        <item>Sejuani</item>
+        <item>Shaco</item>
+        <item>Shen</item>
+        <item>Shyvana</item>
+        <item>Singed</item>
+        <item>Sion</item>
+        <item>Sivir</item>
+        <item>Skarner</item>
+        <item>Sona</item>
+        <item>Soraka</item>
+        <item>Swain</item>
+        <item>Tahm Kench</item>
+        <item>Talon</item>
+        <item>Taric</item>
+        <item>Teemo</item>
+        <item>Thresh</item>
+        <item>Tristana</item>
+        <item>Trundle</item>
+        <item>Tryndamere</item>
+        <item>Twisted Fate</item>
+        <item>Twitch</item>
+        <item>Udyr</item>
+        <item>Urgot</item>
+        <item>Varus</item>
+        <item>Vayne</item>
+        <item>Veigar</item>
+        <item>Vel\'Koz</item>
+        <item>Vi</item>
+        <item>Viktor</item>
+        <item>Vladimir</item>
+        <item>Volibear</item>
+        <item>Warwick</item>
+        <item>Wukong</item>
+        <item>Xerath</item>
+        <item>Xin Zhao</item>
+        <item>Yasuo</item>
+        <item>Yorick</item>
+        <item>Zac</item>
+        <item>Zed</item>
+        <item>Ziggs</item>
+        <item>Zilean</item>
+        <item>Zyra</item>
+    </string-array>
+
+    <string name="selectionDialog_message">Select a Champion!</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id2">ca-app-pub-3940256099942544/6300978111</string>
+    ca-app-pub-3846107889251992/7383025467
+    
+</resources>
