@@ -63,17 +63,33 @@ public class dodgeInfo extends AppCompatActivity {
         AsyncTask summoner4 = new summoner(summoner4Text,champSelect4,summoner4Position).execute();
 
 
-        TextView textView1 = new TextView(this);
+        TextView summoner1TextView = (TextView) findViewById(R.id.infosummoner);
         try {
-            textView1.setText(String.valueOf(summoner1.get()));
+            summoner1TextView.setText(String.valueOf(summoner1.get()));
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        TextView textView2 = new TextView(this);
+        TextView summoner2TextView = (TextView) findViewById(R.id.infosummoner2);
         try {
-            textView2.setText(String.valueOf(summoner2.get()));
+            summoner2TextView.setText(String.valueOf(summoner2.get()));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        TextView summoner3TextView = (TextView) findViewById(R.id.infosummoner3);
+        try {
+            summoner3TextView.setText(String.valueOf(summoner3.get()));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        TextView summoner4TextView = (TextView) findViewById(R.id.infosummoner4);
+        try {
+            summoner4TextView.setText(String.valueOf(summoner4.get()));
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -83,27 +99,13 @@ public class dodgeInfo extends AppCompatActivity {
 
         //statsText = (TextView) findViewById(R.id.testText);
         //statsText.setText(summoner1.getDisplayedText());
-        LinearLayout verticalLayout = new LinearLayout(this);
-
-        //fill parent
-        LinearLayout.LayoutParams rlp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.FILL_PARENT,
-                LinearLayout.LayoutParams.FILL_PARENT,
-                LinearLayout.VERTICAL);
 
         //Ads
-        AdView dodgeAd = new AdView(this);
-        dodgeAd.setAdUnitId(getResources().getString(R.string.banner_ad_unit_id2));
-        dodgeAd.setAdSize(AdSize.SMART_BANNER);
-
-
+        AdView mAdView = (AdView) findViewById(R.id.adView2);
         AdRequest adRequest = new AdRequest.Builder().build();
-        dodgeAd.loadAd(adRequest);
+        mAdView.loadAd(adRequest);
 
-        verticalLayout.addView(textView1);
-        verticalLayout.addView(textView2);
-        verticalLayout.addView(dodgeAd);
-        setContentView(verticalLayout, rlp);
+        setContentView(R.layout.activity_dodge_info);
 
     }
 

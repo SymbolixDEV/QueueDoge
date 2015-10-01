@@ -303,7 +303,7 @@ public class summoner extends AsyncTask<String, Integer, String>{
         return getDisplayedText();
     }
 
-    protected void onPostExecute(String result){
-        result = (String.valueOf(effectiveness));
+    protected void onPostExecute(Statcard result){
+        result = statcard;
     }
 }
