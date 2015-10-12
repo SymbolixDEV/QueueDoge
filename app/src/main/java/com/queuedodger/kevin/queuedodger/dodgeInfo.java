@@ -1,6 +1,7 @@
 package com.queuedodger.kevin.queuedodger;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.queuedodger.kevin.queuedodger.summoners.Statcard;
 import com.queuedodger.kevin.queuedodger.summoners.summoner;
 
 import org.apache.http.params.HttpConnectionParams;
@@ -39,63 +41,144 @@ import javax.net.ssl.HttpsURLConnection;
 public class dodgeInfo extends AppCompatActivity {
     private TextView statsText;
     private TextView textView;
+    private Statcard stat1,stat2,stat3,stat4;
+    private String summoner1Text,summoner2Text,summoner3Text,summoner4Text;
+    private TextView summoner1TextView, summoner2TextView, summoner3TextView, summoner4TextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent dodgeIntent = getIntent();
-        String summoner1Text = dodgeIntent.getExtras().getString("summoner1Name");
-        String summoner2Text = dodgeIntent.getExtras().getString("summoner2Name");
-        String summoner3Text = dodgeIntent.getExtras().getString("summoner3Name");
-        String summoner4Text = dodgeIntent.getExtras().getString("summoner4Name");
+        summoner1Text = dodgeIntent.getExtras().getString("summoner1Name");
+        summoner2Text = dodgeIntent.getExtras().getString("summoner2Name");
+        summoner3Text = dodgeIntent.getExtras().getString("summoner3Name");
+        summoner4Text = dodgeIntent.getExtras().getString("summoner4Name");
         int summoner1Position = dodgeIntent.getIntExtra("summoner1Position", 1);
         int summoner2Position = dodgeIntent.getIntExtra("summoner2Position", 2);
         int summoner3Position = dodgeIntent.getIntExtra("summoner3Position", 3);
         int summoner4Position = dodgeIntent.getIntExtra("summoner4Position", 4);
-        int champSelect1 = dodgeIntent.getIntExtra("champSelect1",0);
-        int champSelect2 = dodgeIntent.getIntExtra("champSelect2",0);
-        int champSelect3 = dodgeIntent.getIntExtra("champSelect3",0);
-        int champSelect4 = dodgeIntent.getIntExtra("champSelect4",0);
-
-        AsyncTask summoner1 = new summoner(summoner1Text,champSelect1,summoner1Position).execute();
-        AsyncTask summoner2 = new summoner(summoner2Text,champSelect2,summoner2Position).execute();
-        AsyncTask summoner3 = new summoner(summoner3Text,champSelect3,summoner3Position).execute();
-        AsyncTask summoner4 = new summoner(summoner4Text,champSelect4,summoner4Position).execute();
+        int champSelect1 = dodgeIntent.getIntExtra("champSelect1", 0);
+        int champSelect2 = dodgeIntent.getIntExtra("champSelect2", 0);
+        int champSelect3 = dodgeIntent.getIntExtra("champSelect3", 0);
+        int champSelect4 = dodgeIntent.getIntExtra("champSelect4", 0);
 
 
-        TextView summoner1TextView = (TextView) findViewById(R.id.infosummoner);
+        setContentView(R.layout.activity_dodge_info);
+
+        summoner1TextView = (TextView) findViewById(R.id.infosummoner);
+        summoner2TextView = (TextView) findViewById(R.id.infosummoner2);
+        summoner3TextView = (TextView) findViewById(R.id.infosummoner3);
+        summoner4TextView = (TextView) findViewById(R.id.infosummoner4);
+
+        TextView summoner1WinRate = (TextView) findViewById(R.id.positionwinRate);
+        TextView summoner2WinRate = (TextView) findViewById(R.id.positionwinRate2);
+        TextView summoner3WinRate = (TextView) findViewById(R.id.positionwinRate3);
+        TextView summoner4WinRate = (TextView) findViewById(R.id.positionwinRate4);
+
+        /*
+        checkAndSet(summoner1TextView, summoner1Text);
+        checkAndSet(summoner2TextView, summoner2Text);
+        checkAndSet(summoner3TextView, summoner3Text);
+        checkAndSet(summoner4TextView, summoner4Text);
+        */
+
+
+        //Set Summoner Name in BOLD
+        summoner1TextView.setTypeface(null, Typeface.BOLD);
+        summoner2TextView.setTypeface(null, Typeface.BOLD);
+        summoner3TextView.setTypeface(null, Typeface.BOLD);
+        summoner4TextView.setTypeface(null, Typeface.BOLD);
+
+
+        summoner1TextView.setText(summoner1Text);
+        summoner2TextView.setText(summoner2Text);
+        summoner3TextView.setText(summoner3Text);
+        summoner4TextView.setText(summoner4Text);
+
+        //Set Position Text
+
+        TextView position1Text = (TextView) findViewById(R.id.positionText);
+        TextView position2Text = (TextView) findViewById(R.id.positionText2);
+        TextView position3Text = (TextView) findViewById(R.id.positionText3);
+        TextView position4Text = (TextView) findViewById(R.id.positionText4);
+
+        setPositionText(position1Text,summoner1Position);
+        setPositionText(position2Text,summoner2Position);
+        setPositionText(position3Text,summoner3Position);
+        setPositionText(position4Text,summoner4Position);
+
+
+
+        stat1 = new Statcard();
+        stat2 = new Statcard();
+        stat3 = new Statcard();
+        stat4 = new Statcard();
+
+        TextView champkda1 = (TextView) findViewById(R.id.champkda);
+        TextView champkda2 = (TextView) findViewById(R.id.champkda2);
+        TextView champkda3 = (TextView) findViewById(R.id.champkda3);
+        TextView champkda4 = (TextView) findViewById(R.id.champkda4);
+
+
+
+        AsyncTask summoner1 = new summoner(summoner1Text.trim(),champSelect1,summoner1Position, champkda1,summoner1WinRate).execute();
+        AsyncTask summoner2 = new summoner(summoner2Text.trim(),champSelect2,summoner2Position, champkda2,summoner2WinRate).execute();
+        AsyncTask summoner3 = new summoner(summoner3Text.trim(),champSelect3,summoner3Position, champkda3,summoner3WinRate).execute();
+        AsyncTask summoner4 = new summoner(summoner4Text.trim(),champSelect4,summoner4Position, champkda4,summoner4WinRate).execute();
+
+
+
+        /*
+        //Summoner1
+        TextView champkda1 = (TextView) findViewById(R.id.champkda);
+        TextView summoner1PositionTextView = (TextView) findViewById(R.id.positionText);
+        setPositionText(summoner1PositionTextView, summoner1Position);
         try {
-            summoner1TextView.setText(String.valueOf(summoner1.get()));
+            stat1 = (Statcard) summoner1.get();
+            champkda1.setText(String.valueOf(stat1.getChampionWinrate()));
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        TextView summoner2TextView = (TextView) findViewById(R.id.infosummoner2);
-        try {
-            summoner2TextView.setText(String.valueOf(summoner2.get()));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        TextView summoner3TextView = (TextView) findViewById(R.id.infosummoner3);
-        try {
-            summoner3TextView.setText(String.valueOf(summoner3.get()));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        TextView summoner4TextView = (TextView) findViewById(R.id.infosummoner4);
-        try {
-            summoner4TextView.setText(String.valueOf(summoner4.get()));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
 
+        //Summoner2
+        TextView champkda2 = (TextView) findViewById(R.id.champkda2);
+        TextView summoner2PositionTextView = (TextView) findViewById(R.id.positionText2);
+        setPositionText(summoner2PositionTextView, summoner2Position);
+        try {
+            stat2 = (Statcard) summoner2.get();
+            champkda2.setText(String.valueOf(stat2.getChampionWinrate()));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        //Summoner3
+        TextView champkda3 = (TextView) findViewById(R.id.champkda3);
+        TextView summoner3PositionTextView = (TextView) findViewById(R.id.positionText3);
+        setPositionText(summoner3PositionTextView, summoner3Position);
+        try {
+            stat3 = (Statcard) summoner3.get();
+            champkda3.setText(String.valueOf(stat3.getChampionWinrate()));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        //Summoner4
+        TextView champkda4 = (TextView) findViewById(R.id.champkda4);
+        TextView summoner4PositionTextView = (TextView) findViewById(R.id.positionText4);
+        setPositionText(summoner4PositionTextView, summoner4Position);
+        try {
+            stat3 = (Statcard) summoner3.get();
+            champkda4.setText(String.valueOf(stat4.getChampionWinrate()));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        */
 
         //statsText = (TextView) findViewById(R.id.testText);
         //statsText.setText(summoner1.getDisplayedText());
@@ -105,7 +188,7 @@ public class dodgeInfo extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        setContentView(R.layout.activity_dodge_info);
+
 
     }
 
@@ -131,5 +214,35 @@ public class dodgeInfo extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private TextView setPositionText(TextView positionText, int positionNumber){
+        switch (positionNumber){
+            case 0:
+                positionText.setText("Middle");
+                break;
+            case 1:
+                positionText.setText("Top");
+                break;
+            case 2:
+                positionText.setText("Adc");
+                break;
+            case 3:
+                positionText.setText("Jungle");
+                break;
+            case 4:
+                positionText.setText("Support");
+                break;
+        }
+
+
+        return positionText;
+    }
+    private void checkAndSet(TextView summonerTextView, String text){
+        if (text == null){
+            summonerTextView.setText("");
+        }
+        else{
+            summoner1TextView.setText(text);
+        }
+    }
 
 }

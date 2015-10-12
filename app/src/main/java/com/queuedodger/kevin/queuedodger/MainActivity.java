@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private hashmap championHash;
     private Spinner champSpinner1,champSpinner2,champSpinner3,champSpinner4;
 
+    private String player1Name,player2Name,player3Name,player4Name;
+    private EditText summoner1,summoner2,summoner3,summoner4;
+
     public final static String summoner1Name = "com.queuedodger.kevin.summoner1Name";
     public final static String summoner2Name = "com.queuedodger.kevin.summoner2Name";
     public final static String summoner3Name = "com.queuedodger.kevin.summoner3Name";
@@ -42,11 +45,44 @@ public class MainActivity extends AppCompatActivity {
         champSpinner3 = (Spinner) findViewById(R.id.champSpinner3);
         champSpinner4 = (Spinner) findViewById(R.id.champSpinner4);
 
+
+        summoner1 = (EditText) findViewById(R.id.summoner1);
+        summoner2 = (EditText) findViewById(R.id.summoner2);
+        summoner3 = (EditText) findViewById(R.id.summoner3);
+        summoner4 = (EditText) findViewById(R.id.summoner4);
+
+
+
+
+
+
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+
+        player1Name = String.valueOf(summoner1.getText());
+        player2Name = String.valueOf(summoner2.getText());
+        player3Name = String.valueOf(summoner3.getText());
+        player4Name = String.valueOf(summoner4.getText());
+
+
+
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        summoner1.setText(player1Name);
+        summoner2.setText(player2Name);
+        summoner3.setText(player3Name);
+        summoner4.setText(player4Name);
+    }
 
 
     @Override
@@ -73,13 +109,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickDodge(View view){
         Intent dodgeIntent = new Intent(this, dodgeInfo.class);
-        EditText summoner1 = (EditText) findViewById(R.id.summoner1);
+
         String summoner1Text = summoner1.getText().toString();
-        EditText summoner2 = (EditText) findViewById(R.id.summoner2);
         String summoner2Text = summoner2.getText().toString();
-        EditText summoner3 = (EditText) findViewById(R.id.summoner3);
         String summoner3Text = summoner3.getText().toString();
-        EditText summoner4 = (EditText) findViewById(R.id.summoner4);
         String summoner4Text = summoner4.getText().toString();
         dodgeIntent.putExtra("summoner1Name", summoner1Text);
         dodgeIntent.putExtra("summoner2Name", summoner2Text);

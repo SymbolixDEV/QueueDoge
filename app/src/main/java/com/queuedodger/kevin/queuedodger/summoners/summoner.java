@@ -4,8 +4,8 @@ package com.queuedodger.kevin.queuedodger.summoners;
  * Created by Kevin on 9/18/2015.
  */
 import android.os.AsyncTask;
+import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -13,18 +13,15 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import com.queuedodger.kevin.queuedodger.data.hashmap;
 
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 
-public class summoner extends AsyncTask<String, Integer, String>{
+public class summoner extends AsyncTask<String, Integer, Statcard> {
     private JsonElement[] summoner1Champions;
     private static Map<Integer, String> hmap;
     private float effectiveness;
@@ -35,9 +32,10 @@ public class summoner extends AsyncTask<String, Integer, String>{
     private int position, selectedChampion;
     private boolean noPositionGames;
     private Statcard statcard;
+    private TextView champWinrate, positionWinrate;
 
     private static final String USER_AGENT = "Mozilla/5.0";
-    public summoner (String summonerName, int championId, int pickPosition){
+    public summoner (String summonerName, int championId, int pickPosition, TextView champWinrate, TextView positionWinrate){
         weightModifier2 = (float) .7;
         weightModifier1= (float) .3;
         effectiveness = 7;
@@ -46,9 +44,12 @@ public class summoner extends AsyncTask<String, Integer, String>{
         this.pickPosition = pickPosition;
         noPositionGames = false;
         statcard = new Statcard();
+        this.champWinrate = champWinrate;
+        this.positionWinrate = positionWinrate;
 
         doInBackground();
     }
+
 
 
 
@@ -149,7 +150,7 @@ public class summoner extends AsyncTask<String, Integer, String>{
                 }
 
                 switch (pickPosition) {
-                    case 1:
+                    case 0:
                         for (int j = 0; j < midChampions.length; j++) {
                             if (idObj.getAsInt() == midChampions[j]) {
                                 totalMidGames += totalGamesElement.getAsInt();
@@ -157,7 +158,7 @@ public class summoner extends AsyncTask<String, Integer, String>{
                             }
                         }
                         break;
-                    case 2:
+                    case 1:
                         for (int j = 0; j < topChampions.length; j++) {
                             if (idObj.getAsInt() == topChampions[j]) {
                                 totalTopGames += totalGamesElement.getAsInt();
@@ -167,7 +168,7 @@ public class summoner extends AsyncTask<String, Integer, String>{
                         break;
 
 
-                    case 3:
+                    case 2:
                         for (int j = 0; j < adcChampions.length; j++) {
                             if (idObj.getAsInt() == adcChampions[j]) {
                                 totalAdcGames += totalGamesElement.getAsInt();
@@ -176,7 +177,7 @@ public class summoner extends AsyncTask<String, Integer, String>{
                         }
                         break;
 
-                    case 4:
+                    case 3:
                         for (int j = 0; j < jungleChampions.length; j++) {
                             if (idObj.getAsInt() == jungleChampions[j]) {
                                 totalJungleGames += totalGamesElement.getAsInt();
@@ -185,7 +186,7 @@ public class summoner extends AsyncTask<String, Integer, String>{
                         }
                         break;
 
-                    case 5:
+                    case 4:
                         for (int j = 0; j < supportChampions.length; j++) {
                             if (idObj.getAsInt() == supportChampions[j]) {
                                 totalSupportGames += totalGamesElement.getAsInt();
@@ -206,7 +207,7 @@ public class summoner extends AsyncTask<String, Integer, String>{
             float positionWinRate = 0;
 
             switch (position) {
-                case 1:
+                case 0:
                     System.out.println("Mid Winrate:" + (float) totalMidWins / (float) totalMidGames);
                     positionWinRate = (float) totalMidWins / (float) totalMidGames;
                     statcard.setPositionWinrate(positionWinRate);
@@ -216,7 +217,7 @@ public class summoner extends AsyncTask<String, Integer, String>{
                     }
                     break;
 
-                case 2:
+                case 1:
                     System.out.println("Top Winrate:" + (float) totalTopWins / totalTopGames);
                     positionWinRate = (float) totalTopWins / (float) totalTopGames;
                     statcard.setPositionWinrate(positionWinRate);
@@ -225,7 +226,7 @@ public class summoner extends AsyncTask<String, Integer, String>{
                     }
                     break;
 
-                case 3:
+                case 2:
                     System.out.println("Adc Winrate:" + (float) totalAdcWins / totalAdcGames);
                     positionWinRate = (float) totalAdcWins / (float) totalAdcGames;
                     statcard.setPositionWinrate(positionWinRate);
@@ -234,7 +235,7 @@ public class summoner extends AsyncTask<String, Integer, String>{
                     }
                     break;
 
-                case 4:
+                case 3:
                     System.out.println("Jungle Winrate:" + (float) totalJungleWins / totalJungleGames);
                     positionWinRate = (float) totalJungleWins / (float) totalJungleGames;
                     statcard.setPositionWinrate(positionWinRate);
@@ -242,7 +243,7 @@ public class summoner extends AsyncTask<String, Integer, String>{
                         noPositionGames = true;
                     }
                     break;
-                case 5:
+                case 4:
                     System.out.println("Support Winrate:" + (float) totalSupportWins / totalSupportGames);
                     positionWinRate = (float) totalSupportWins / (float) totalSupportGames;
                     statcard.setPositionWinrate(positionWinRate);
@@ -287,7 +288,7 @@ public class summoner extends AsyncTask<String, Integer, String>{
     public void setDisplayedText(String display) {displayedText = display;}
 
     @Override
-    protected String doInBackground(String... strings) {
+    protected Statcard doInBackground(String... strings) {
         try {
             getConnection(summonerName, championId, pickPosition);
         }
@@ -300,10 +301,11 @@ public class summoner extends AsyncTask<String, Integer, String>{
             setDisplayedText("General Exception!");
             e.printStackTrace();
         }
-        return getDisplayedText();
+        return statcard;
     }
 
     protected void onPostExecute(Statcard result){
-        result = statcard;
+        champWinrate.setText(String.valueOf(statcard.getChampionWinrate()));
+        positionWinrate.setText(String.valueOf(statcard.getPositionWinrate()));
     }
 }
