@@ -9,6 +9,14 @@ public class Statcard {
     private float championWinrate;
     private int position;
     private float positionWinrate;
+    private float kda;
+
+    public float getkda(){
+        return kda;
+    }
+    public void setKda(float x){
+        kda = x;
+    }
 
     public float getChampionWinrate(){
         return championWinrate;

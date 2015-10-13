@@ -3,6 +3,7 @@ package com.queuedodger.kevin.queuedodger.summoners;
 /**
  * Created by Kevin on 9/18/2015.
  */
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.widget.TextView;
 
@@ -32,10 +33,10 @@ public class summoner extends AsyncTask<String, Integer, Statcard> {
     private int position, selectedChampion;
     private boolean noPositionGames;
     private Statcard statcard;
-    private TextView champWinrate, positionWinrate;
+    private TextView champkda, positionWinrate,champWinrate;
 
     private static final String USER_AGENT = "Mozilla/5.0";
-    public summoner (String summonerName, int championId, int pickPosition, TextView champWinrate, TextView positionWinrate){
+    public summoner (String summonerName, int championId, int pickPosition, TextView champkda, TextView positionWinrate, TextView champWinrate){
         weightModifier2 = (float) .7;
         weightModifier1= (float) .3;
         effectiveness = 7;
@@ -44,8 +45,9 @@ public class summoner extends AsyncTask<String, Integer, Statcard> {
         this.pickPosition = pickPosition;
         noPositionGames = false;
         statcard = new Statcard();
-        this.champWinrate = champWinrate;
+        this.champkda = champkda;
         this.positionWinrate = positionWinrate;
+        this.champWinrate = champWinrate;
 
         doInBackground();
     }
@@ -147,6 +149,7 @@ public class summoner extends AsyncTask<String, Integer, Statcard> {
                     selectedChampKills = totalKillsElement.getAsInt();
                     selectedChampDeaths = totalDeathsElement.getAsInt();
                     selectedChampAssists = totalAssistsElement.getAsInt();
+                    statcard.setKda((selectedChampKills+selectedChampAssists)/selectedChampDeaths);
                 }
 
                 switch (pickPosition) {
@@ -305,7 +308,32 @@ public class summoner extends AsyncTask<String, Integer, Statcard> {
     }
 
     protected void onPostExecute(Statcard result){
-        champWinrate.setText(String.valueOf(statcard.getChampionWinrate()));
-        positionWinrate.setText(String.valueOf(statcard.getPositionWinrate()));
+
+        champkda.setText(String.format("%.2f",statcard.getkda()));
+        if (statcard.getkda()>=3){
+            champkda.setTextColor(Color.GREEN);
+        }
+        if (statcard.getkda()<3 && statcard.getkda()>= 1.5){
+            champkda.setTextColor(Color.YELLOW);
+        }
+        if (statcard.getkda()<1.5){
+            champkda.setTextColor(Color.RED);
+        }
+        positionWinrate.setText(String.format("%.2f",statcard.getPositionWinrate()));
+        champWinrate.setText(String.format("%.2f",statcard.getChampionWinrate()));
+        winRateColorSet(positionWinrate, statcard.getPositionWinrate());
+        winRateColorSet(champWinrate, statcard.getChampionWinrate());
+    }
+
+    private void winRateColorSet(TextView View, float number){
+        if (number > 0.55){
+            View.setTextColor(Color.GREEN);
+        }
+        if (number <= 0.55 & number > 0.48){
+            View.setTextColor(Color.YELLOW);
+        }
+        if (number <= 0.48){
+            View.setTextColor(Color.RED);
+        }
     }
 }

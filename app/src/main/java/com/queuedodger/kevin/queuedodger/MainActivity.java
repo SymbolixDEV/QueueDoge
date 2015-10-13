@@ -128,9 +128,9 @@ public class MainActivity extends AppCompatActivity {
         dodgeIntent.putExtra("summoner4Position", spinner4.getSelectedItemPosition());
 
         dodgeIntent.putExtra("summoner1Champ", champSpinner1.getSelectedItem().toString());
-        dodgeIntent.putExtra("summoner2Champ", champSpinner1.getSelectedItem().toString());
-        dodgeIntent.putExtra("summoner3Champ", champSpinner1.getSelectedItem().toString());
-        dodgeIntent.putExtra("summoner4Champ", champSpinner1.getSelectedItem().toString());
+        dodgeIntent.putExtra("summoner2Champ", champSpinner2.getSelectedItem().toString());
+        dodgeIntent.putExtra("summoner3Champ", champSpinner3.getSelectedItem().toString());
+        dodgeIntent.putExtra("summoner4Champ", champSpinner4.getSelectedItem().toString());
 
 
         dodgeIntent.putExtra("champSelect1",champConversion(champSpinner1));

@@ -43,6 +43,7 @@ public class dodgeInfo extends AppCompatActivity {
     private TextView textView;
     private Statcard stat1,stat2,stat3,stat4;
     private String summoner1Text,summoner2Text,summoner3Text,summoner4Text;
+    private String summoner1Champ,summoner2Champ,summoner3Champ,summoner4Champ;
     private TextView summoner1TextView, summoner2TextView, summoner3TextView, summoner4TextView;
 
     @Override
@@ -53,6 +54,10 @@ public class dodgeInfo extends AppCompatActivity {
         summoner2Text = dodgeIntent.getExtras().getString("summoner2Name");
         summoner3Text = dodgeIntent.getExtras().getString("summoner3Name");
         summoner4Text = dodgeIntent.getExtras().getString("summoner4Name");
+        summoner1Champ = dodgeIntent.getExtras().getString("summoner1Champ");
+        summoner2Champ = dodgeIntent.getExtras().getString("summoner2Champ");
+        summoner3Champ = dodgeIntent.getExtras().getString("summoner3Champ");
+        summoner4Champ = dodgeIntent.getExtras().getString("summoner4Champ");
         int summoner1Position = dodgeIntent.getIntExtra("summoner1Position", 1);
         int summoner2Position = dodgeIntent.getIntExtra("summoner2Position", 2);
         int summoner3Position = dodgeIntent.getIntExtra("summoner3Position", 3);
@@ -95,6 +100,19 @@ public class dodgeInfo extends AppCompatActivity {
         summoner3TextView.setText(summoner3Text);
         summoner4TextView.setText(summoner4Text);
 
+        //set Champion Text
+        TextView championText = (TextView) findViewById(R.id.champword);
+        TextView championText2 = (TextView) findViewById(R.id.champword2);
+        TextView championText3 = (TextView) findViewById(R.id.champword3);
+        TextView championText4 = (TextView) findViewById(R.id.champword4);
+
+
+        championText.setText(summoner1Champ+": ");
+        championText2.setText(summoner2Champ+": ");
+        championText3.setText(summoner3Champ+": ");
+        championText4.setText(summoner4Champ+": ");
+
+
         //Set Position Text
 
         TextView position1Text = (TextView) findViewById(R.id.positionText);
@@ -119,12 +137,17 @@ public class dodgeInfo extends AppCompatActivity {
         TextView champkda3 = (TextView) findViewById(R.id.champkda3);
         TextView champkda4 = (TextView) findViewById(R.id.champkda4);
 
+        TextView champWinrate1 = (TextView) findViewById(R.id.champWinrate);
+        TextView champWinrate2 = (TextView) findViewById(R.id.champWinrate2);
+        TextView champWinrate3 = (TextView) findViewById(R.id.champWinrate3);
+        TextView champWinrate4 = (TextView) findViewById(R.id.champWinrate4);
 
 
-        AsyncTask summoner1 = new summoner(summoner1Text.trim(),champSelect1,summoner1Position, champkda1,summoner1WinRate).execute();
-        AsyncTask summoner2 = new summoner(summoner2Text.trim(),champSelect2,summoner2Position, champkda2,summoner2WinRate).execute();
-        AsyncTask summoner3 = new summoner(summoner3Text.trim(),champSelect3,summoner3Position, champkda3,summoner3WinRate).execute();
-        AsyncTask summoner4 = new summoner(summoner4Text.trim(),champSelect4,summoner4Position, champkda4,summoner4WinRate).execute();
+
+        AsyncTask summoner1 = new summoner(summoner1Text.trim(),champSelect1,summoner1Position, champkda1,summoner1WinRate, champWinrate1).execute();
+        AsyncTask summoner2 = new summoner(summoner2Text.trim(),champSelect2,summoner2Position, champkda2,summoner2WinRate, champWinrate2).execute();
+        AsyncTask summoner3 = new summoner(summoner3Text.trim(),champSelect3,summoner3Position, champkda3,summoner3WinRate, champWinrate3).execute();
+        AsyncTask summoner4 = new summoner(summoner4Text.trim(),champSelect4,summoner4Position, champkda4,summoner4WinRate, champWinrate4).execute();
 
 
 
@@ -217,19 +240,19 @@ public class dodgeInfo extends AppCompatActivity {
     private TextView setPositionText(TextView positionText, int positionNumber){
         switch (positionNumber){
             case 0:
-                positionText.setText("Middle");
+                positionText.setText("Middle: ");
                 break;
             case 1:
-                positionText.setText("Top");
+                positionText.setText("Top: ");
                 break;
             case 2:
-                positionText.setText("Adc");
+                positionText.setText("Adc: ");
                 break;
             case 3:
-                positionText.setText("Jungle");
+                positionText.setText("Jungle: ");
                 break;
             case 4:
-                positionText.setText("Support");
+                positionText.setText("Support: ");
                 break;
         }
 

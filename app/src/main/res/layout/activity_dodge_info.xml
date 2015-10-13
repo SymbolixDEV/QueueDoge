@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@+id/placeholderText"
         android:id="@+id/infosummoner" />
 
     <LinearLayout
@@ -24,35 +24,40 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Champion:"
+            android:text="@+id/championText"
             android:id="@+id/champword" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@+id/placeholderText"
             android:id="@+id/champtext" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@+id/placeholderText"
             android:id="@+id/champkda" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="placeholder"
+            android:text="@+id/placeholderText"
+            android:id="@+id/champWinrate" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+id/placeholderText"
             android:id="@+id/positionText" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@+id/placeholderText"
             android:id="@+id/positionwinRate" />
 
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@+id/placeholderText"
         android:id="@+id/infosummoner2" />
 
     <LinearLayout
@@ -63,34 +68,39 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Champion:"
+            android:text="@+id/championText"
             android:id="@+id/champword2" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@+id/placeholderText"
             android:id="@+id/champtext2" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@+id/placeholderText"
             android:id="@+id/champkda2" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="placeholder"
+            android:text="@+id/placeholderText"
+            android:id="@+id/champWinrate2" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+id/placeholderText"
             android:id="@+id/positionText2" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@+id/placeholderText"
             android:id="@+id/positionwinRate2" />
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@+id/placeholderText"
         android:id="@+id/infosummoner3" />
 
     <LinearLayout
@@ -101,34 +111,39 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Champion:"
+            android:text="@+id/championText"
             android:id="@+id/champword3" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@+id/placeholderText"
             android:id="@+id/champtext3" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@+id/placeholderText"
             android:id="@+id/champkda3" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="placeholder"
+            android:text="@+id/placeholderText"
+            android:id="@+id/champWinrate3" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+id/placeholderText"
             android:id="@+id/positionText3" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@+id/placeholderText"
             android:id="@+id/positionwinRate3" />
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="@+id/placeholderText"
         android:id="@+id/infosummoner4" />
 
     <LinearLayout
@@ -139,28 +154,33 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Champion:"
+            android:text="@+id/championText"
             android:id="@+id/champword4" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@+id/placeholderText"
             android:id="@+id/champtext4" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@+id/placeholderText"
             android:id="@+id/champkda4" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="placeholder"
+            android:text="@+id/placeholderText"
+            android:id="@+id/champWinrate4" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+id/placeholderText"
             android:id="@+id/positionText4" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="@+id/placeholderText"
             android:id="@+id/positionwinRate4" />
     </LinearLayout>
     <com.google.android.gms.ads.AdView
